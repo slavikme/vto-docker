@@ -1,0 +1,5 @@
+web/.gitignore
+web/.git
+web/*.sample
+web/*.md
+web/*.txt

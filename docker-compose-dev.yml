@@ -1,0 +1,30 @@
+version: '3.2'
+services:
+  web:
+    build: .
+    container_name: vto-web
+    ports:
+      - "80:80"
+    links:
+      - db
+      - cache
+    env_file:
+      - env
+    volumes:
+      - ./web:/var/www/html
+  db:
+    image: mariadb
+    container_name: vto-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql/data
+    env_file:
+      - env
+  cache:
+    image: memcached
+    container_name: vto-cache
+    ports: 
+      - "11211:11211"
+volumes:
+  db-data:
