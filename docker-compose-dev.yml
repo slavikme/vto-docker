@@ -15,15 +15,20 @@ services:
   db:
     image: mariadb
     container_name: vto-db
+    restart: always
     ports:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+      - ./backup:/backup
     env_file:
       - env
+    command: mysqld --log-bin=/backup/logbin
   cache:
     image: memcached
     container_name: vto-cache
+    restart: always
     ports: 
       - "11211:11211"
 volumes:

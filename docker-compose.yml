@@ -15,12 +15,16 @@ services:
   db:
     image: mariadb
     container_name: vto-db
+    restart: always
     volumes:
       - vto-db-data:/var/lib/mysql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+      - ./backup:/backup
     env_file:
       - env
   cache:
     image: memcached
     container_name: vto-cache
+    restart: always
 volumes:
   vto-db-data:

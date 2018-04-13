@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-/usr/local/bin/docker-compose -f docker-compose.yml up -d
+docker_compose="/usr/local/bin/docker-compose -f docker-compose.yml"
+
+${docker_compose} stop &&
+${docker_compose} rm -f --all &&
+${docker_compose} pull &&
+${docker_compose} build --no-cache &&
+${docker_compose} up -d --force-recreate
