@@ -3,7 +3,7 @@
 Below are some basic instructions.
 
 ## Quick start
-1. Install Docker.
+1. Install [Docker](https://www.docker.com/community-edition).
 2. Install [Docker Compose](https://docs.docker.com/compose/).
 3. Clone this repos recursively (in order to also pull submodules). This [post](https://stackoverflow.com/a/4438292/1291121) may help.
    ```shell
