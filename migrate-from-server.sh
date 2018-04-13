@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Please enter the following information in order to make the script run uninterruptedly."
+[ ! $DEFAULT ] && echo "Please enter the following information in order to make the script run uninterruptedly."
 echo
 [ ! $DEFAULT ] && read -p "Remote SSH hostname [ssh-us1.hosth.net]: " REMOTE_HOST
 REMOTE_HOST=${REMOTE_HOST:-ssh-us1.hosth.net}
