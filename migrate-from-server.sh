@@ -21,18 +21,22 @@ LOCAL_WEBSITE_PATH=${LOCAL_WEBSITE_PATH:-$(realpath ./web)}
 BUILD_DIR=$(realpath ./.build)
 TMP_DIR=${BUILD_DIR}/tmp
 
+mkdir -p ${BUILD_DIR} &&\
+mkdir -p ${TMP_DIR} &&\
 
+
+echo "Dumping database $REMOTE_DB_NAME into files on remote server... " &&\
+ssh -t -i ${REMOTE_PRIVATE_KEY} -p${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_HOST} "rm -rf /tmp/$REMOTE_DB_NAME; mkdir -p /tmp/$REMOTE_DB_NAME; for i in \$(mysql -NBA $REMOTE_DB_NAME -e \"show tables\"); do echo -n \"Dumping table '\$i'... \"; mysqldump $REMOTE_DB_NAME \$i > /tmp/$REMOTE_DB_NAME/\$i.sql; echo \"done\"; done" &&\
 \
 echo "Downloading from remote server... " &&\
 rsync -r -v --progress --stats -e "ssh -t -i $REMOTE_PRIVATE_KEY -p $REMOTE_PORT" ${REMOTE_USER}@${REMOTE_HOST}:/tmp/${REMOTE_DB_NAME}/ ./initdb/ &&\
 ssh -t -i ${REMOTE_PRIVATE_KEY} -p${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_HOST} rm -rf /tmp/${REMOTE_DB_NAME} &&\
-echo "done" &&\a
 \
 echo "Starting docker build... " &&\
 rm -f ./backup/* &&\
 \
-echo "Retrieving the latest website files from remote..." && \
-rsync -r -v --progress --stats -e "ssh -t -i $REMOTE_PRIVATE_KEY -p $REMOTE_PORT" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_WEBSITE_PATH}/ ${LOCAL_WEBSITE_PATH}/ #&&\
-git -C ./web/ reset --hard
+echo "Retrieving the latest website files from remote..." &&\
+rsync -r -v --progress --stats -e "ssh -t -i $REMOTE_PRIVATE_KEY -p $REMOTE_PORT" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_WEBSITE_PATH}/ ${LOCAL_WEBSITE_PATH}/ &&\
+git -C ./web/ reset --hard &&\
 \
 . build.sh
