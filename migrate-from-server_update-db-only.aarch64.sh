@@ -25,7 +25,7 @@ MYSQL_DATABASE_TMP=${MYSQL_DATABASE}_tmp
 
 echo -n "Changing the ./initdb/000_init.sql file to comply with aarch64 MariaDB version and set a temp DB '$MYSQL_DATABASE_TMP' to import to... " &&\
 echo "DROP SCHEMA IF EXISTS $MYSQL_DATABASE_TMP;" > ./initdb/000_init.sql &&\
-echo "CREATE SCHEMA $MYSQL_DATABASE_TMP DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" > ./initdb/000_init.sql &&\
+echo "CREATE SCHEMA $MYSQL_DATABASE_TMP DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" >> ./initdb/000_init.sql &&\
 echo "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE_TMP.* TO '$MYSQL_USER'@'%';" >> ./initdb/000_init.sql &&\
 echo "SET PASSWORD FOR $MYSQL_USER = PASSWORD('$MYSQL_PASSWORD');" >> ./initdb/000_init.sql &&\
 echo "USE $MYSQL_DATABASE_TMP;" >> ./initdb/000_init.sql &&\

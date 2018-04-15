@@ -41,7 +41,7 @@ echo "done" &&\
 
 echo -n "Changing the ./initdb/000_init.sql file to comply with aarch64 MariaDB version... " &&\
 echo "DROP SCHEMA IF EXISTS $MYSQL_DATABASE;" > ./initdb/000_init.sql &&\
-echo "CREATE SCHEMA $MYSQL_DATABASE DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" > ./initdb/000_init.sql &&\
+echo "CREATE SCHEMA $MYSQL_DATABASE DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" >> ./initdb/000_init.sql &&\
 echo "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';" >> ./initdb/000_init.sql &&\
 echo "SET PASSWORD FOR $MYSQL_USER = PASSWORD('$MYSQL_PASSWORD');" >> ./initdb/000_init.sql &&\
 echo "USE $MYSQL_DATABASE;" >> ./initdb/000_init.sql &&\
