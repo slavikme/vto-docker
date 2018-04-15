@@ -14,6 +14,7 @@ Below are some basic instructions.
    cd vto-docker
    . migrate-from-server.sh
    ```
+5. Edit the file `./forum/includes/class_postbit.php`, got ot line 249 and right at he beginning of the function `construct_postbit` add the following line (if not already exists)
 
 ## Development build
 In order to install a dev environment of VTO, use the following steps:

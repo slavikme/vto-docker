@@ -3,6 +3,7 @@ services:
   web:
     build: .
     container_name: vto-web
+    restart: always
     ports:
       - "80:80"
     links:

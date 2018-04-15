@@ -14,7 +14,7 @@ services:
     volumes:
       - ./web:/var/www/html
   db:
-    image: mariadb
+    image: lsioarmhf/mariadb-aarch64
     container_name: vto-db
     restart: always
     volumes:
