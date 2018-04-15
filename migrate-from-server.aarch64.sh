@@ -39,7 +39,7 @@ echo -n "Loading variables from ./env file... " &&\
 source ./env &&\
 echo "done" &&\
 
-echo -n "Changing the ./initdb/000_init.sql file to comply with aarch64 MariaDB version... " &&\
+echo -n "Modify the ./initdb/000_init.sql file accordingly... " &&\
 echo "DROP SCHEMA IF EXISTS $MYSQL_DATABASE;" > ./initdb/000_init.sql &&\
 echo "CREATE SCHEMA $MYSQL_DATABASE DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" >> ./initdb/000_init.sql &&\
 echo "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';" >> ./initdb/000_init.sql &&\
