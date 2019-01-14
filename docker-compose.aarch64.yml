@@ -13,6 +13,11 @@ services:
       - env
     volumes:
       - ./web:/var/www/html
+    logging:
+      driver: json-file
+      options:
+        max-size: 100M
+        max-file: 5
   db:
     image: lsioarmhf/mariadb-aarch64
     container_name: vto-db
